@@ -1,4 +1,4 @@
-# QuizForge — University Exam Practice Platform
+# QuizStack — University Exam Practice Platform
 
 A modern, dark-themed quiz platform for university students built with Next.js 14, Supabase, and Tailwind CSS.
 
@@ -137,12 +137,3 @@ Open [http://localhost:3000](http://localhost:3000)
 | full_name | text | Display name |
 
 Row Level Security is enabled on all tables. Only authenticated quiz creators can modify their own quizzes.
-
----
-
-## Key Design Decisions
-
-- **RLS over API routes**: All access control is enforced at the database level via Supabase RLS policies, not just the frontend
-- **No global state manager**: Uses React state + Supabase client directly for simplicity
-- **CSS Grid animation**: Hint expand uses `grid-template-rows` transition for smooth, performant animation
-- **Key prop on QuestionCard**: `key={currentIndex}` forces remount between questions, resetting all local state cleanly
