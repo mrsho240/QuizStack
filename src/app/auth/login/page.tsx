@@ -39,7 +39,7 @@ export default function LoginPage() {
             <BookOpen size={26} className="text-white" />
           </div>
           <h1 className="text-2xl font-bold">Welcome back</h1>
-          <p className="text-slate-400 text-sm mt-1">Sign in to your QuizForge account</p>
+          <p className="text-slate-400 text-sm mt-1">Sign in to your QuizStack account</p>
         </div>
 
         <div className="card p-8">

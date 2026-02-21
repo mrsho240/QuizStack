@@ -70,7 +70,7 @@ src/
 
 ```bash
 git clone <your-repo>
-cd quizforge
+cd QuizStack
 npm install
 ```
 
