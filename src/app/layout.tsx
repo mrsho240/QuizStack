@@ -15,7 +15,7 @@ const dmMono = DM_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'QuizStack — University Exam Practice',
+  title: 'QuizStack',
   description: 'Create and practice quizzes before your exams',
 }
 
