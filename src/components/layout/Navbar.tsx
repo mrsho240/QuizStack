@@ -15,7 +15,7 @@ export default function Navbar() {
             <BookOpen size={16} className="text-white" />
           </div>
           <span className="font-bold text-lg tracking-tight">
-            Quiz<span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">Forge</span>
+            Quiz<span className="bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400 bg-clip-text text-transparent">Stack</span>
           </span>
         </Link>
 
