@@ -35,6 +35,7 @@ export default function EditQuizPage() {
             type: q.type,
             question_text: q.question_text,
             hint: q.hint || '',
+            explanation: q.explanation || '',
             correct_answer: q.correct_answer,
             options: (q.options as [string, string, string, string]) || ['', '', '', ''],
             correct_option_index: q.correct_option_index ?? 0,
