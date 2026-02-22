@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { Syne, DM_Mono } from 'next/font/google'
+import { ThemeProvider } from '@/lib/hooks/useTheme'
 import './globals.css'
 
 const syne = Syne({
@@ -15,15 +16,30 @@ const dmMono = DM_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'QuizStack',
+  title: 'QuizForge — University Exam Practice',
   description: 'Create and practice quizzes before your exams',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${syne.variable} ${dmMono.variable}`}>
-      <body className="bg-[#0a0a0f] text-slate-100 antialiased font-syne min-h-screen">
-        {children}
+    <html lang="en" data-theme="dark" suppressHydrationWarning className={`${syne.variable} ${dmMono.variable}`}>
+      {/* Inline script prevents theme flash on reload */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var t = localStorage.getItem('qf-theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', t);
+              } catch(e) {}
+            `,
+          }}
+        />
+      </head>
+      <body className="antialiased font-syne min-h-screen">
+        <ThemeProvider>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )

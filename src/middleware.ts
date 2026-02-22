@@ -9,13 +9,9 @@ export async function middleware(request: NextRequest) {
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        getAll() {
-          return request.cookies.getAll()
-        },
+        getAll() { return request.cookies.getAll() },
         setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value }) =>
-            request.cookies.set(name, value)
-          )
+          cookiesToSet.forEach(({ name, value }) => request.cookies.set(name, value))
           supabaseResponse = NextResponse.next({ request })
           cookiesToSet.forEach(({ name, value, options }) =>
             supabaseResponse.cookies.set(name, value, options)
@@ -25,24 +21,16 @@ export async function middleware(request: NextRequest) {
     }
   )
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser()
+  const { data: { user } } = await supabase.auth.getUser()
 
   const protectedRoutes = ['/quiz/create', '/dashboard']
-  const isProtected = protectedRoutes.some((r) =>
-    request.nextUrl.pathname.startsWith(r)
-  )
+  const isProtected = protectedRoutes.some((r) => request.nextUrl.pathname.startsWith(r))
 
   if (!user && isProtected) {
     return NextResponse.redirect(new URL('/auth/login', request.url))
   }
 
-  if (
-    user &&
-    (request.nextUrl.pathname === '/auth/login' ||
-      request.nextUrl.pathname === '/auth/signup')
-  ) {
+  if (user && (request.nextUrl.pathname === '/auth/login' || request.nextUrl.pathname === '/auth/signup')) {
     return NextResponse.redirect(new URL('/', request.url))
   }
 

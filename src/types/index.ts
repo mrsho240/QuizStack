@@ -8,6 +8,8 @@ export interface Quiz {
   created_by: string
   created_at: string
   updated_at: string
+  timer_seconds?: number | null
+  randomize_questions?: boolean
   profiles?: Profile
 }
 
@@ -18,6 +20,7 @@ export interface Question {
   type: QuestionType
   question_text: string
   hint?: string
+  explanation?: string
   correct_answer: string
   options?: string[]
   correct_option_index?: number
@@ -31,16 +34,31 @@ export interface Profile {
   created_at: string
 }
 
+export interface QuizAttempt {
+  id: string
+  quiz_id: string
+  user_id: string
+  score: number
+  total: number
+  percentage: number
+  time_taken_seconds?: number
+  completed_at: string
+  profiles?: Profile
+}
+
 export interface QuizFormData {
   title: string
   topic: string
   question_count: number
+  timer_seconds?: number | null
+  randomize_questions?: boolean
 }
 
 export interface QuestionFormData {
   type: QuestionType
   question_text: string
   hint: string
+  explanation: string
   correct_answer: string
   options: [string, string, string, string]
   correct_option_index: number
@@ -51,26 +69,7 @@ export interface AnswerState {
   selected?: number | string
   isCorrect?: boolean
   showHint: boolean
+  showExplanation: boolean
 }
 
-export type Database = {
-  public: {
-    Tables: {
-      quizzes: {
-        Row: Quiz
-        Insert: Omit<Quiz, 'id' | 'created_at' | 'updated_at'>
-        Update: Partial<Omit<Quiz, 'id' | 'created_at'>>
-      }
-      questions: {
-        Row: Question
-        Insert: Omit<Question, 'id' | 'created_at'>
-        Update: Partial<Omit<Question, 'id' | 'created_at'>>
-      }
-      profiles: {
-        Row: Profile
-        Insert: Profile
-        Update: Partial<Profile>
-      }
-    }
-  }
-}
+export type Theme = 'dark' | 'light'
